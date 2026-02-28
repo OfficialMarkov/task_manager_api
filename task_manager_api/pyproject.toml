@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "task-manager-api"
+version = "1.0.0"
+description = "Production-ready Task Manager API with FastAPI, PostgreSQL, and JWT authentication"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "sqlalchemy[asyncio]>=2.0.0",
+    "asyncpg>=0.29.0",
+    "alembic>=1.12.0",
+    "pydantic>=2.5.0",
+    "pydantic[email]>=2.5.0",  # Для валидации email (EmailStr)
+    "pydantic-settings>=2.1.0",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.6",
+    "psycopg2-binary>=2.9.9",
+    "email-validator>=2.0.0",  # Валидатор email для Pydantic
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.25.0",
+    "pytest-cov>=4.1.0",
+]
+
+# Настройки setuptools для явного указания пакетов
+[tool.setuptools.packages.find]
+# Автоматически находим все пакеты, но исключаем 'alembic' и 'tests'
+# 'alembic' - это инструмент для миграций БД, не часть приложения
+# 'tests' - тесты не нужно устанавливать как пакет
+exclude = ["alembic*", "tests*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
