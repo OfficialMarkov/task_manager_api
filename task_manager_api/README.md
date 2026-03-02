@@ -1,19 +1,21 @@
 # Task Manager API
 
-Production-ready REST API for managing personal tasks, built with FastAPI, async SQLAlchemy, JWT auth and full test coverage.  
-Designed as a compact, real-world backend service suitable for junior/internship portfolios.
+Production-ready REST API for managing personal tasks. Этот проект демонстрирует навыки построения современной асинхронной архитектуры на Python с полным циклом тестирования и контейнеризацией.
 
 ---
 
 ## Features
 
-- User registration and login with JWT authentication.
-- Role-based access control (`user`, `admin`).
-- CRUD for tasks (create/read/update/delete).
-- Pagination, filtering by completion status and text search.
-- Protection so users can only access their own tasks; admins can access all.
-- Centralized error handling and validation.
-- Async database access and fully async tests.
+- **Auth**
+  - JWT-based authentication (Register/Login) с хешированием паролей.
+- **Access Control**
+  - Четкое разделение ролей (user, admin). Пользователи видят только свои задачи.
+- **Async First**
+  - Полностью асинхронный стек от эндпоинтов до работы с базой данных (SQLAlchemy 2.0).
+- **Search & Filters**
+  - Встроенная пагинация, поиск по тексту и фильтрация по статусу выполнения.
+- **Reliability**
+  - Централизованная обработка ошибок и валидация данных через Pydantic v2.
 
 ---
 
@@ -253,35 +255,6 @@ To generate a secure `SECRET_KEY`:
 ```bash
 python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
-
----
-
-## Why this project is relevant for internships
-
-- Uses a realistic backend stack: FastAPI, async SQLAlchemy, JWT, Alembic, Docker.
-- Clean separation of layers (routes/services/db/schemas/core).
-- Fully async code and tests, including proper async fixtures.
-- Complete test suite (16 tests) that can be run with a single command.
-- Easy to clone, run and review thanks to SQLite quickstart and clear structure.
-
-You can mention this project in your CV as:
-
-> “Task Manager API — production-style FastAPI backend with JWT auth, async SQLAlchemy, alembic migrations and full pytest coverage.”
-
-And link directly to this repository and to the `/docs` endpoint on a live deployment (if you deploy it).
-
----
-
-## Кратко по‑русски
-
-Task Manager API — это учебный, но достаточно боевой backend-сервис для управления задачами:
-
-- FastAPI, async SQLAlchemy, JWT, Alembic, Docker.
-- Регистрация, логин, роли пользователей, доступ только к своим задачам.
-- Пагинация, фильтрация, поиск.
-- Полный набор асинхронных тестов на pytest.
-
-Проект хорошо подходит как демонстрация навыков для стажировки или позиции junior backend‑разработчика.
 
 ---
 
