@@ -25,4 +25,5 @@ jobs:
     
     - name: Run tests with pytest
       run: |
+        cd task_manager_api
         python -m pytest tests/ -v --tb=short
