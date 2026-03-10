@@ -14,7 +14,11 @@ from app.core.config import settings
 from app.core.security import get_password_hash
 from app.db.models import User, UserRole
 
-TEST_DATABASE_URL = settings.DATABASE_URL.replace("/task_manager", "/test_task_manager")
+import os
+TEST_DATABASE_URL = os.getenv(
+    "TEST_DATABASE_URL",
+    "sqlite+aiosqlite:///./test_task_manager.db"
+)
 
 @pytest.fixture(scope="session")
 def event_loop():
