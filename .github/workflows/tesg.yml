@@ -26,5 +26,14 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: task_manager_api
-        run: python -m pytest tests/ -v --tb=short
+        run: |
+          if [ -d "task_manager_api/tests" ]; then
+            TEST_PATH="task_manager_api/tests"
+          elif [ -d "tests" ]; then
+            TEST_PATH="tests"
+          else
+            echo "Tests directory not found (checked: task_manager_api/tests and tests)"
+            exit 1
+          fi
+          echo "Using test path: $TEST_PATH"
+          python -m pytest "$TEST_PATH" -v --tb=short
